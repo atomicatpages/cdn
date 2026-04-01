@@ -36,7 +36,7 @@
   
         #custom-login-title {
           margin: 0 0 8px 0;
-          font-size: 34px;
+          font-size: 30px;
           font-weight: 800;
           line-height: 1.1;
           color: #ffffff;
