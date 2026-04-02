@@ -192,7 +192,7 @@
       emailInput.className = "custom-login-input";
       emailInput.id = "custom-login-email";
       emailInput.type = "email";
-      emailInput.placeholder = "Type your e-mail";
+      emailInput.placeholder = "Digite seu e-mail";
       emailInput.autocomplete = "username";
   
       const emailError = document.createElement("div");
@@ -225,7 +225,7 @@
       passwordInput.className = "custom-login-input";
       passwordInput.id = "custom-login-password";
       passwordInput.type = "password";
-      passwordInput.placeholder = "Type your password";
+      passwordInput.placeholder = "Digite sua senha";
       passwordInput.autocomplete = "current-password";
   
       const passwordError = document.createElement("div");
