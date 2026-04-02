@@ -207,7 +207,7 @@
       const passwordLabel = document.createElement("label");
       passwordLabel.className = "custom-login-label";
       passwordLabel.setAttribute("for", "custom-login-password");
-      passwordLabel.textContent = "Password";
+      passwordLabel.textContent = "Senha";
   
       const passwordWrap = document.createElement("div");
       passwordWrap.className = "custom-login-input-wrap";
