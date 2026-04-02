@@ -346,7 +346,7 @@
   
         isSubmitting = true;
         loginButton.disabled = true;
-        loginButton.textContent = "Entrando...";
+        loginButton.textContent = "Validando...";
   
         try {
           const response = await fetch("https://api.clarityweb.ct.ws/webhook/login", {
