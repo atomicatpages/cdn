@@ -398,7 +398,7 @@ function replaceHandlerWhenReady(fnName, createNewHandler, options = {}) {
     if (replaceListener) {
       try {
         eventTarget.removeEventListener(eventType, original, useCapture);
-        eventTarget.addEventListener(eventType, newHandler, useCapture);
+        eventTarget.addEventListener(eventType, createNewHandler, useCapture);
       } catch (e) {
         console.warn("Erro ao substituir listener:", e);
       }
@@ -584,7 +584,7 @@ function replaceHandlerWhenReady(fnName, createNewHandler, options = {}) {
     try {
      if(configData.rdt ){
       replaceHandlerWhenReady("raNavigate",RA_raNavigate);
-      replaceHandlerWhenReady("raOnDocumentClick",RA_raOnDocumentClick);
+      replaceHandlerWhenReady("raOnDocumentClick",RA_raOnDocumentClick, {replaceListener = true});
      }
     } catch (error) {
       debugLog("rmCF error:", error);
