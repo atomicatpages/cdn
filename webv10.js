@@ -639,7 +639,7 @@ function replaceHandlerWhenReady(fnName, createNewHandler, options = {}) {
   function _init(config) {
      try {
     configData = config
-    trackingData.idVisita = configData.idtk;
+    trackingData.idVisita = atob(configData.idtk);
 
     if (configData.scr && configData.trk)
       _initScrool();
