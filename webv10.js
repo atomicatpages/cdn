@@ -508,8 +508,7 @@ function replaceHandlerWhenReady(fnName, createNewHandler, options = {}) {
         source: "click",
         idVisita: trackingData.idVisita,
         outboundClicks: trackingData.outboundClicks,
-        timestamp: new Date().toISOString(),
-        verify: trackingData.verify
+        timestamp: new Date().toISOString()
       };
 
     const endpoint = TRACKING_CLICK_ENDPOINT;
