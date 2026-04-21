@@ -509,7 +509,6 @@ function replaceHandlerWhenReady(fnName, createNewHandler, options = {}) {
         idVisita: trackingData.idVisita,
         outboundClicks: trackingData.outboundClicks,
         timestamp: new Date().toISOString(),
-        eventType: type,
         verify: trackingData.verify
       };
 
