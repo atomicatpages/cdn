@@ -393,7 +393,6 @@ function replaceHandlerWhenReady(fnName, createNewHandler, options = {}) {
 
     clearInterval(timer);
 
-    const newHandler = createNewHandler(original);
 
     // 🔹 apenas substitui listener se habilitado
     if (replaceListener) {
@@ -406,7 +405,7 @@ function replaceHandlerWhenReady(fnName, createNewHandler, options = {}) {
     }
 
     // 🔹 sempre atualiza referência global
-    window[fnName] = newHandler;
+    window[fnName] = createNewHandler;
 
     window[`__${fnName}_replaced`] = true;
   }, intervalMs);
