@@ -585,7 +585,7 @@ function replaceHandlerWhenReady(fnName, createNewHandler, options = {}) {
     try {
      if(configData.rdt ){
       replaceHandlerWhenReady("raNavigate",RA_raNavigate);
-      replaceHandlerWhenReady("raOnDocumentClick",RA_raOnDocumentClick, { replaceListener: true});
+      replaceHandlerWhenReady("raOnDocumentClick",RA_raOnDocumentClick);
      }
     } catch (error) {
       debugLog("rmCF error:", error);
