@@ -55,7 +55,7 @@
         debugLog("Tracking error:", error);
       }
 
-      abrirLink2(url,target);
+      RA_raNavigate(url,target);
 
     }
 
@@ -160,7 +160,7 @@
         
       }
       
-      abrirLink2(href, target);
+      RA_raNavigate(href, target);
 
 
 
@@ -887,6 +887,7 @@ function openLink(url1, url2, popup = true, reload = true, checkDelay = 5000, ur
 
 
 })(window);
+
 
 
 
