@@ -519,7 +519,7 @@ function replaceHandlerWhenReady(fnName, createNewHandler, options = {}) {
         const ok = navigator.sendBeacon(
           endpoint,
           new Blob([JSON.stringify(payload)], {
-            type: "application/json",
+              type: "text/plain;charset=UTF-8",
           })
         );
 
