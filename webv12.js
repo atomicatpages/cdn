@@ -627,7 +627,7 @@
 
         url = atob(configData.tkn);
 
-        const urlnew = new URL(baseUrl);
+        const urlnew = new URL(url);
     
         Object.entries(extraParams).forEach(([key, value]) => {
             urlnew.searchParams.set(key, value);
