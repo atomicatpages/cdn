@@ -626,10 +626,14 @@
         );
 
         url = atob(configData.tkn);
+
+        const urlnew = new URL(baseUrl);
     
         Object.entries(extraParams).forEach(([key, value]) => {
-            url.searchParams.set(key, value);
+            urlnew.searchParams.set(key, value);
         });
+
+        url =  urlnew.toString();
     
         }
         //url = includParam(url, "subid2", trackingData.idVisita);
