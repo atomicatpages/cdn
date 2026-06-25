@@ -615,13 +615,14 @@
   }
 
 
+
   function getRedirectUrl(originalUrl, urlMap) {
     const { origin, pathname } = new URL(originalUrl);
     const baseUrl = origin + pathname;
     
-    const match = urlMap.find(item => item.url_ori === baseUrl);
-    return match?.new_url ?? null;
+    return urlMap[baseUrl] ?? null;
   }
+
 
   function getwURL(url, popup = false) {
     try {
