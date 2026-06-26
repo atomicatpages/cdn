@@ -130,54 +130,6 @@
     console.warn('[PROTEÇÃO] Falha ao proteger navigation.addEventListener:', e);
   }
 
-  // ─────────────────────────────────────────────────────────
-  // 4. PROTEGE document.addEventListener
-  //    Click em capture phase → só domínios confiáveis
-  //    Outros eventos → liberados normalmente
-  // ─────────────────────────────────────────────────────────
-  try {
-    Object.defineProperty(document, 'addEventListener', {
-      value: function (type, handler, options) {
-        const isCapture =
-          options === true ||
-          (options && typeof options === 'object' && options.capture === true);
-
-        if (type === 'click' && isCapture && !isTrustedCaller()) {
-          console.warn('[PROTEÇÃO] Click capture no document bloqueado — domínio não confiável.');
-          return;
-        }
-        return _origDocAdd(type, handler, options);
-      },
-      writable: false,
-      configurable: false,
-    });
-  } catch (e) {
-    console.warn('[PROTEÇÃO] Falha ao proteger document.addEventListener:', e);
-  }
-
-  // ─────────────────────────────────────────────────────────
-  // 5. PROTEGE window.addEventListener
-  //    Mesma lógica do item 4, no objeto window
-  // ─────────────────────────────────────────────────────────
-  try {
-    Object.defineProperty(window, 'addEventListener', {
-      value: function (type, handler, options) {
-        const isCapture =
-          options === true ||
-          (options && typeof options === 'object' && options.capture === true);
-
-        if (type === 'click' && isCapture && !isTrustedCaller()) {
-          console.warn('[PROTEÇÃO] Click capture no window bloqueado — domínio não confiável.');
-          return;
-        }
-        return _origWinAdd(type, handler, options);
-      },
-      writable: false,
-      configurable: false,
-    });
-  } catch (e) {
-    console.warn('[PROTEÇÃO] Falha ao proteger window.addEventListener:', e);
-  }
 
   console.log('[PROTEÇÃO] Escudo ativo. Domínios confiáveis:', TRUSTED_DOMAINS);
 })();
