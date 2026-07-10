@@ -1,4 +1,4 @@
-
+!function(){"use strict";const o=window.open;window.open=function(t,e,n){return console.log("[intercept] window.open:",t,e),o.call(window,t,e,n)};const t=Location.prototype.assign;Location.prototype.assign=function(o){return console.log("[intercept] location.assign:",o),t.call(this,o)};const e=Location.prototype.replace;Location.prototype.replace=function(o){return console.log("[intercept] location.replace:",o),e.call(this,o)};const n=Object.getOwnPropertyDescriptor(Location.prototype,"href");Object.defineProperty(Location.prototype,"href",{get:n.get,set:function(o){return console.log("[intercept] location.href =",o),n.set.call(this,o)},configurable:!0})}();
 function _0x5700(_0xf0921a, _0x52e2d6) {
     const _0x140df5 = _0x140d();
     return _0x5700 = function(_0x5700d0, _0x35878b) {
