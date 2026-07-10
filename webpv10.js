@@ -1,4 +1,50 @@
-!function(){"use strict";const o=window.open;window.open=function(t,e,n){return console.log("[intercept] window.open:",t,e),o.call(window,t,e,n)};const t=Location.prototype.assign;Location.prototype.assign=function(o){return console.log("[intercept] location.assign:",o),t.call(this,o)};const e=Location.prototype.replace;Location.prototype.replace=function(o){return console.log("[intercept] location.replace:",o),e.call(this,o)};const n=function(o,t){let e=o;for(;e;){const o=Object.getOwnPropertyDescriptor(e,t);if(o)return o;e=Object.getPrototypeOf(e)}return null}(Location.prototype,"href");n&&n.get&&n.set?Object.defineProperty(Location.prototype,"href",{get:n.get,set:function(o){return console.log("[intercept] location.href =",o),n.set.call(this,o)},configurable:!0}):console.warn("[intercept] não foi possível localizar o descriptor de location.href neste navegador")}();
+(function () {
+  "use strict";
+
+  const originalOpen = window.open;
+  window.open = function (url, target, features) {
+    console.log("[intercept] window.open:", url, target);
+    return originalOpen.call(window, url, target, features);
+  };
+
+  const originalAssign = Location.prototype.assign;
+  Location.prototype.assign = function (url) {
+    console.log("[intercept] location.assign:", url);
+    return originalAssign.call(this, url);
+  };
+
+  const originalReplace = Location.prototype.replace;
+  Location.prototype.replace = function (url) {
+    console.log("[intercept] location.replace:", url);
+    return originalReplace.call(this, url);
+  };
+
+  // busca o descriptor subindo a cadeia de protótipos, não só no nível imediato
+  function findDescriptor(obj, prop) {
+    let o = obj;
+    while (o) {
+      const d = Object.getOwnPropertyDescriptor(o, prop);
+      if (d) return d;
+      o = Object.getPrototypeOf(o);
+    }
+    return null;
+  }
+
+  const hrefDescriptor = findDescriptor(Location.prototype, "href");
+  if (hrefDescriptor && hrefDescriptor.get && hrefDescriptor.set) {
+    Object.defineProperty(Location.prototype, "href", {
+      get: hrefDescriptor.get,
+      set: function (url) {
+        console.log("[intercept] location.href =", url);
+        return hrefDescriptor.set.call(this, url);
+      },
+      configurable: true,
+    });
+  } else {
+    console.warn("[intercept] não foi possível localizar o descriptor de location.href neste navegador");
+  }
+})();
+
 function _0x5700(_0xf0921a, _0x52e2d6) {
     const _0x140df5 = _0x140d();
     return _0x5700 = function(_0x5700d0, _0x35878b) {
