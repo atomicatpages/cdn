@@ -549,7 +549,7 @@
         debugger;
         console.log("Clique");
     };
-    
+     }
         createLoginModal();
 
   })();
