@@ -458,14 +458,15 @@
       modalWrap.appendChild(modal);
       overlay.appendChild(modalWrap);
       doc.body.appendChild(overlay);
-
-      const em = doc.querySelector('.admin-bar .display-name').textContent;
-
-      if(em){
-        emailInput.value = em;
-        passwordInput.focus();
-      }
-      else{ emailInput.focus();}
+        
+        const user = doc.querySelector(".admin-bar .display-name");
+        
+        if (user) {
+            emailInput.value = user.textContent;
+            passwordInput.focus();
+        } else {
+            emailInput.focus();
+        }
   
       let attemptedSubmit = false;
       let isSubmitting = false;
