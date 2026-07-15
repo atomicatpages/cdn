@@ -588,13 +588,10 @@
       });
     }
 
-        if (window.jQuery && window.elementorFrontend) {
-        jQuery(window).on("elementor/frontend/init", function () {
-                createLoginModal();
-        });
-    } else {
-        window.addEventListener("load", createLoginModal);
-    }
+
+        window.addEventListener("load", () => {
+        setTimeout(createLoginModal, 500);
+    });
 
 
   })();
