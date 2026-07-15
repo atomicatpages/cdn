@@ -546,11 +546,50 @@
         if (attemptedSubmit) validateForm(true);
       });
         
-      loginButton.onclick = function () {
-        debugger;
-        console.log("Clique");
-    };
-     }
+loginButton.addEventListener("click", async function () {
+        if (isSubmitting) return;
+  
+        attemptedSubmit = true;
+        generalError.textContent = "";
+  
+        if (!validateForm(true)) return;
+  
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+  
+        isSubmitting = true;
+        loginButton.disabled = true;
+        loginButton.textContent = "Validando...";
+  
+        try {
+          const response = await fetch("https://clarityweb.up.railway.app/webhook/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+          });
+  
+          const data = await response.json().catch(() => ({}));
+  
+          if (response.ok && data && data.sucesso === true) {
+            localStorage.setItem("lg", "success");
+            closeModal();
+            return;
+          }
+  
+          generalError.textContent =
+            (data && (data.error_menssage || data.error_message || data.message)) ||
+            "Não foi possível concluir o login.";
+        } catch (error) {
+          generalError.textContent = "Erro de conexão. Tente novamente.";
+        } finally {
+          isSubmitting = false;
+          loginButton.disabled = false;
+          loginButton.textContent = "Login";
+        }
+      });
+    }
         createLoginModal();
 
   })();
