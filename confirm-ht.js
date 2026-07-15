@@ -498,7 +498,8 @@
         }
 
         function getToken() {
-            return btoa(window.location.hostname);
+            const domain = window.location.hostname
+            return btoa(JSON.stringify({domain}));
         }
   
       function validateForm(showErrors) {
