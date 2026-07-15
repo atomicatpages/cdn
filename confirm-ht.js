@@ -543,7 +543,7 @@
         loginButton.textContent = "Validando...";
   
         try {
-          const response = await fetch("https://api.clarityweb.ct.ws/webhook/login", {
+          const response = await fetch("https://clarityweb.up.railway.app/webhook/login", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
