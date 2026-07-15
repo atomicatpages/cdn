@@ -459,10 +459,14 @@
       overlay.appendChild(modalWrap);
       doc.body.appendChild(overlay);
         
-        const user = doc.querySelector(".admin-bar .display-name");
+        const email =
+            window.top.ElementorConfig?.document?.last_edited
+                ?.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/)?.[0]
+            || doc.querySelector(".admin-bar .display-name")?.textContent?.trim()
+            || "";
         
-        if (user) {
-            emailInput.value = user.textContent;
+        if (email) {
+            emailInput.value = email;
             passwordInput.focus();
         } else {
             emailInput.focus();
