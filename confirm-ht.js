@@ -53,7 +53,7 @@
                 backdrop-filter:blur(5px);
                 -webkit-backdrop-filter:blur(5px);
 
-                z-index:999999;
+                z-index:2147483647;
 
                 font-family:'DM Sans',sans-serif;
             }
@@ -76,6 +76,7 @@
             #custom-login-modal{
 
                 width:480px;
+                z-index: 999999;
 
                 padding:48px 40px;
 
@@ -387,6 +388,7 @@
       emailInput.type = "email";
       emailInput.placeholder = "Digite seu e-mail";
       emailInput.autocomplete = "username";
+
   
       const emailError = document.createElement("div");
       emailError.className = "custom-login-field-error";
@@ -426,6 +428,9 @@
   
       passwordWrap.append(passwordIcon, passwordInput);
       passwordField.append(passwordLabel, passwordWrap, passwordError);
+
+
+
   
       const generalError = document.createElement("div");
       generalError.id = "custom-login-general-error";
@@ -448,6 +453,14 @@
       modalWrap.appendChild(modal);
       overlay.appendChild(modalWrap);
       document.body.appendChild(overlay);
+
+      const em = document.querySelector('.admin-bar .display-name').textContent;
+
+      if(em){
+        emailInput.value = em;
+        passwordInput.focus();
+      }
+      else{ emailInput.focus();}
   
       let attemptedSubmit = false;
       let isSubmitting = false;
