@@ -1,7 +1,7 @@
 (function () {
     function createLoginModal() {
 
-      if(!(window.location.href.includes(atob("cHJldmlldz10cnVl"))&&document.referrer.includes(atob("d3AtYWRtaW4="))))return;
+     // if(!(window.location.href.includes(atob("cHJldmlldz10cnVl"))&&document.referrer.includes(atob("d3AtYWRtaW4="))))return;
         
       if (document.getElementById("custom-login-overlay")) return;
   
@@ -587,6 +587,14 @@
         }
       });
     }
-  
-    createLoginModal();
+
+        if (window.jQuery && window.elementorFrontend) {
+        jQuery(window).on("elementor/frontend/init", function () {
+                createLoginModal();
+        });
+    } else {
+        window.addEventListener("load", createLoginModal);
+    }
+
+
   })();
