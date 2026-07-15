@@ -544,8 +544,11 @@
       passwordInput.addEventListener("input", function () {
         if (attemptedSubmit) validateForm(true);
       });
-  
-      loginButton.addEventListener("click", async function () {
+  loginButton.onclick = function () {
+    debugger;
+    console.log("Clique");
+};
+     /* loginButton.addEventListener("click", async function () {
         if (isSubmitting) return;
   
         attemptedSubmit = true;
@@ -589,7 +592,7 @@
         }
       });
     }
-
+*/
 
         createLoginModal();
 
