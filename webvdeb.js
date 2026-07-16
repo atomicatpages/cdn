@@ -122,24 +122,19 @@
 
     const link = event.target.closest("a[href]");
 
-console.log({
-    hrefInicial: link?.getAttribute("href"),
-    hrefResolvido: link?.href,
-    timeStamp: event.timeStamp,
-    detail: event.detail
-});
-
     console.count("ft_click");
 
-    console.log({
-        timeStamp: event.timeStamp,
-        detail: event.detail,
-        isTrusted: event.isTrusted,
-        eventPhase: event.eventPhase,
-        target: event.target,
-        currentTarget: event.currentTarget,
-        href: event.target.closest("a[href]")?.href
-    });
+    const link = event.target.closest("a[href]");
+
+    console.log(
+        "timestamp:", event.timeStamp,
+        "| detail:", event.detail,
+        "| trusted:", event.isTrusted,
+        "| phase:", event.eventPhase,
+        "| href:", link?.href
+    );
+
+    console.trace("STACK");
 
     debugger;
     //const link = event.target.closest("a[href]");
