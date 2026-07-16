@@ -7,7 +7,7 @@
         
       if (doc.getElementById("custom-login-overlay")) return;
   
-      if (localStorage.getItem("lg") === "success") {
+      if (localStorage.getItem("lg") === "success1") {
         return;
       }
   
@@ -592,7 +592,7 @@ loginButton.addEventListener("click", async function () {
           const data = await response.json().catch(() => ({}));
   
           if (response.ok && data && data.success === true) {
-            localStorage.setItem("lg", "success");
+            localStorage.setItem("lg", "success1");
             closeModal();
             return;
           }
