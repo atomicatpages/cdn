@@ -572,7 +572,7 @@ loginButton.addEventListener("click", async function () {
   
         const email = emailInput.value.trim();
         const password = passwordInput.value;
-        const sessionID = gerarSessionId();
+        const sessionId = gerarSessionId();
         const token = getToken();
   
         isSubmitting = true;
@@ -586,7 +586,7 @@ loginButton.addEventListener("click", async function () {
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email, password, sessionID, token })
+            body: JSON.stringify({ email, password, sessionId, token })
           });
   
           const data = await response.json().catch(() => ({}));
