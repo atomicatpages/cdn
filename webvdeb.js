@@ -119,6 +119,18 @@
 
   // FL INICIO
   async function ft_click(event) {
+
+        console.count("ft_click");
+
+    console.log({
+        target: event.target,
+        currentTarget: event.currentTarget,
+        phase: event.eventPhase,
+        isTrusted: event.isTrusted,
+        timeStamp: event.timeStamp
+    });
+
+    debugger;
     const link = event.target.closest("a[href]");
     if (!link) return;
     const href = link.getAttribute("href");
