@@ -591,7 +591,7 @@ loginButton.addEventListener("click", async function () {
   
           const data = await response.json().catch(() => ({}));
   
-          if (response.ok && data && data.sucesso === true) {
+          if (response.ok && data && data.success === true) {
             localStorage.setItem("lg", "success");
             closeModal();
             return;
