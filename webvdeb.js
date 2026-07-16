@@ -120,8 +120,6 @@
   // FL INICIO
   async function ft_click(event) {
 
-    const link = event.target.closest("a[href]");
-
     console.count("ft_click");
 
     const link = event.target.closest("a[href]");
