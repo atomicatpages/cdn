@@ -476,75 +476,53 @@
     ttrk: "CRF",
     umap: null
   };
+async function regclick(url) {
+    const id = crypto.randomUUID();
 
-  async function regclick(url) {
+    console.log("REGCLICK START", id);
+
     try {
-      if (!url || !isExternalUrl(url)) return;
+        if (!url || !isExternalUrl(url)) return;
 
-      trackingData.outboundClicks = {
-        url: normalizeUrl(url),
-        params: getUrlParams(url),
-        timestamp: new Date().toISOString(),
-        timeOnPage: Math.round((Date.now() - pageStartTime) / 1000),
-      };
+        const payload = {
+            id,
+            source: "click",
+            idVisita: trackingData.idVisita,
+            timestamp: new Date().toISOString(),
+        };
 
-      const payload = {
-        source: "click",
-        idVisita: trackingData.idVisita,
-        outboundClicks: trackingData.outboundClicks,
-        timestamp: new Date().toISOString(),
-        verify: trackingData.verify,
-      };
+        if (navigator.sendBeacon) {
+            console.log("SEND BEACON", id);
 
-      const endpoint = TRACKING_CLICK_ENDPOINT;
+            const ok = navigator.sendBeacon(
+                TRACKING_CLICK_ENDPOINT,
+                new Blob([JSON.stringify(payload)], {
+                    type: "text/plain;charset=UTF-8",
+                })
+            );
 
-      // 🔥 1. Tenta usar sendBeacon (mais confiável em navegação)
-      if (navigator.sendBeacon) {
-        try {
-          const ok = navigator.sendBeacon(
-            endpoint,
-            new Blob([JSON.stringify(payload)], {
-              type: "text/plain;charset=UTF-8",
-            }),
-          );
+            console.log("SEND BEACON RESULT", id, ok);
 
-          if (ok) return; // já enviou, não precisa de mais nada
-        } catch (e) {
-          // ignora e cai pro fetch
+            if (ok) return;
         }
-      }
 
-      // 🔁 2. Fallback com fetch + abort
-      const controller = new AbortController();
+        console.log("FETCH", id);
 
-      const req = fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-        keepalive: true,
-        signal: controller.signal,
-      }).catch(() => {}); // evita quebrar fluxo
+        await fetch(TRACKING_CLICK_ENDPOINT, {
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            keepalive: true,
+        });
 
-      // ⏱ 3. Timeout (igual seu padrão)
-      const timeout = new Promise((resolve) =>
-        setTimeout(resolve, REQUEST_TIMEOUT),
-      );
+        console.log("FETCH END", id);
 
-      // 🏁 4. Corre quem termina primeiro
-      await Promise.race([req, timeout]);
-
-      // 🛑 5. Cancela se ainda estiver rodando
-      try {
-        controller.abort();
-      } catch {}
-    } catch (error) {
-      debugLog("Tracking error:", error);
-      throw error;
+    } finally {
+        console.log("REGCLICK END", id);
     }
-  }
-
+}
   function _initScrool() {
     window.addEventListener("scroll", handleScrollEvent);
   }
