@@ -120,14 +120,16 @@
   // FL INICIO
   async function ft_click(event) {
 
-        console.count("ft_click");
+    console.count("ft_click");
 
     console.log({
+        timeStamp: event.timeStamp,
+        detail: event.detail,
+        isTrusted: event.isTrusted,
+        eventPhase: event.eventPhase,
         target: event.target,
         currentTarget: event.currentTarget,
-        phase: event.eventPhase,
-        isTrusted: event.isTrusted,
-        timeStamp: event.timeStamp
+        href: event.target.closest("a[href]")?.href
     });
 
     debugger;
