@@ -120,6 +120,10 @@
   // FL INICIO
   async function ft_click(event) {
 
+    if (!event.isTrusted) {
+        return;
+    }
+
     console.count("ft_click");
 
     const link = event.target.closest("a[href]");
