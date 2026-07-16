@@ -120,6 +120,15 @@
   // FL INICIO
   async function ft_click(event) {
 
+    const link = event.target.closest("a[href]");
+
+console.log({
+    hrefInicial: link?.getAttribute("href"),
+    hrefResolvido: link?.href,
+    timeStamp: event.timeStamp,
+    detail: event.detail
+});
+
     console.count("ft_click");
 
     console.log({
@@ -133,7 +142,7 @@
     });
 
     debugger;
-    const link = event.target.closest("a[href]");
+    //const link = event.target.closest("a[href]");
     if (!link) return;
     const href = link.getAttribute("href");
     if (!href || href.startsWith("#")) return;
