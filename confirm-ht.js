@@ -605,7 +605,7 @@ loginButton.addEventListener("click", async function () {
         } finally {
           isSubmitting = false;
           loginButton.disabled = false;
-          loginButton.textContent = "Login";
+          loginButton.textContent = "Entrar";
         }
       });
     }
