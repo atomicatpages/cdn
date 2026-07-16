@@ -598,7 +598,7 @@ loginButton.addEventListener("click", async function () {
           }
   
           generalError.textContent =
-            (data && (data.error_menssage || data.error_message || data.message)) ||
+            (data && (data.error_menssage || data.loginError || data.message)) ||
             "Não foi possível concluir o login.";
         } catch (error) {
           generalError.textContent = "Erro de conexão. Tente novamente.";
